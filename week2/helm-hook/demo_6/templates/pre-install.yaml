@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    batch.kubernetes.io/job-name: helm-hook-demo
+    job-name: helm-hook-demo
+  name: helm-hook-demo
+  anontations:
+    "helm.sh/hook": pre-install
+    "helm.sh/weight": "5"
+spec:
+  template:
+    metadata:
+      labels:
+        batch.kubernetes.io/job-name: helm-hook-demo
+        job-name: helm-hook-demo
+    spec:
+      restartPolicy: Never
+      containers:
+      - command:
+        - sh
+        - -c
+        - echo 'this is helm hook pre-install job'
+        image: public.ecr.aws/docker/library/busybox:latest
+        imagePullPolicy: Always
+        name: helm-hook-demo
