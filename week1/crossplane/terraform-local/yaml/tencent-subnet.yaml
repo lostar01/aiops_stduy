@@ -1,0 +1,12 @@
+apiVersion: vpc.tencentcloud.crossplane.io/v1alpha1
+kind: Subnet
+metadata:
+  name: private-subnet-1
+  namespace: crossplane-system
+spec:
+  forProvider:
+    availabilityZone: "ap-guangzhou-6"
+    cidrBlock: "10.1.2.0/24"
+    name: "private-subnet-1"
+    vpcIdRef:
+      name: "resource-vpc-test"

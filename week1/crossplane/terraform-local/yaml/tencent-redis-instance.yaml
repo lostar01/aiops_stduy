@@ -1,0 +1,20 @@
+apiVersion: redis.tencentcloud.crossplane.io/v1alpha1
+kind: Instance
+metadata:
+  name: "redis-instance"
+  namespace: crossplane-system
+spec:
+  forProvider:
+    availabilityZone: "ap-guangzhou-6"
+    chargeType: "POSTPAID"
+    memSize: 256
+    name: "redis-test"
+    noAuth: True
+    port: 26379
+    type: "master_slave_redis5.0"
+    redisReplicasNum: 1
+    redisShardNum: 1
+    subnetId: "subnet-cnti4abg"
+    vpcId: "vpc-5zaeikj1"
+    securityGroups:
+    - "sg-ce41p015"

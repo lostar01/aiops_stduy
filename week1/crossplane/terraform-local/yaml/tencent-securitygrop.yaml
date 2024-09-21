@@ -1,0 +1,23 @@
+apiVersion: vpc.tencentcloud.crossplane.io/v1alpha1
+kind: SecurityGroup
+metadata:
+  name: "redis-sg"
+  namespace: "crossplane-system"
+spec:
+  forProvider:
+    name: "redis-sg"
+    description: "redis securiy group"
+
+
+---
+apiVersion: vpc.tencentcloud.crossplane.io/v1alpha1
+kind: SecurityGroupLiteRule
+metadata:
+  name: "redis-sg-rules"
+  namespace: "crossplane-system"
+spec:
+  forProvider:
+    ingress:
+    - "ACCEPT#10.1.0.0/16#26379#TCP"
+    securityGroupIdRef:
+      name: "redis-sg"
