@@ -1,0 +1,9 @@
+apiVersion: aiops.geektime.com/v1alpha1
+kind: AIOps
+metadata:
+  name: my-aiops-instance
+  namespace: default
+spec:
+  field1: "AiOpsValue1"
+  field2: "AiOpsValue2"
+

@@ -1,0 +1,8 @@
+apiVersion: mygroup.example.com/v1alpha1
+kind: MyResource
+metadata:
+  name: my-resource-instance
+  namespace: default
+spec:
+  field1: "ExampleValue1"
+  field2: "ExampleValue2"
