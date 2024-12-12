@@ -4,11 +4,11 @@ import time
 
 client = OpenAI(
     api_key = "ollama",
-    base_url = "http://192.168.1.107:11434/v1"
+    base_url = "http://172.29.20.187:11434/v1"
     )
 
 def modify_config(service_name,key,value):
-    print("\n 函数调用的参数：", service,key,value)
+    print("\n 函数调用的参数：", service_name,key,value)
     return json.dumps({"log": "service={} key={} value={}".format(service_name,key,value)})
 
 def restart_service(service_name):
@@ -54,9 +54,8 @@ def run_conversation():
                         "type": "string",
                         "description": "值为value"
                     },
-
+                    "required": ["service_name","key","value"],
                 },
-                "required": ["service_name","key","value"],
             },
         },
 
@@ -70,8 +69,8 @@ def run_conversation():
                         "type": "string",
                         "description": "服务名"
                     },
+                    "required": ["service_name"],
                 },
-                "required": ["service_name"],
             },
         },
 
@@ -89,14 +88,15 @@ def run_conversation():
                         "type": "string",
                         "description": "镜像名称"
                     },
-                    
+                    "required": ["resource_type","image"],
                 },
             },
         },
         ]
 
     response = client.chat.completions.create(
-       model = "llama3.1",
+       #model = "llama3.1",
+       model = "qwen2.5",
        messages = messages,
        tools = tools,
        tool_choice="auto",
@@ -123,6 +123,7 @@ def run_conversation():
             function_name = tool_call.function.name
             function_to_call = available_functions[function_name]
             function_args = json.loads(tool_call.function.arguments)
+            print(function_args)
             function_response = function_to_call(**function_args)
 
             messages.append(
