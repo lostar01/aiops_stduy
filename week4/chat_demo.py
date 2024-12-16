@@ -7,7 +7,8 @@ from langchain_openai import ChatOpenAI
 llm = ChatOpenAI(
     model  = "qwen2.5",
     api_key = "ollama",
-    base_url = "http://172.29.20.187:11434/v1",
+    #base_url = "http://172.29.20.187:11434/v1",
+    base_url = "http://192.168.1.111:11434/v1",
 )
 
 class State(TypedDict):
