@@ -1,0 +1,27 @@
+# permissions for end users to edit applications.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: application
+    app.kubernetes.io/managed-by: kustomize
+  name: application-editor-role
+rules:
+- apiGroups:
+  - application.aiops.com
+  resources:
+  - applications
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - application.aiops.com
+  resources:
+  - applications/status
+  verbs:
+  - get
