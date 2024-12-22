@@ -67,3 +67,27 @@ var worldCmd = &cobra.Command{
 		fmt.Println("source:", source)
 	},
 ```
+
+#### Homework 
+```
+ ./k8scopilot ask chatgpt
+我是 K8S Copilot, 请问有什么可以帮助你？
+>查看 default NS 的deployment
+你说： 查看 default NS 的deployment
+deployment demo-1
+deployment nginx-app
+
+>删除 default NS 的 deployment，资源名称为 demo-1
+你说： 删除 default NS 的 deployment，资源名称为 demo-1
+>您即将删除 namespace: default 的 deployment demo-1,请确认是否删除(Y/N):n
+取消删除 deployment demo-1
+>删除 default NS 的 deployment，资源名称为 demo-1
+你说： 删除 default NS 的 deployment，资源名称为 demo-1
+>您即将删除 namespace: default 的 deployment demo-1,请确认是否删除(Y/N):y
+成功删除 deployment demo-1
+>查看 default NS 的deployment
+你说： 查看 default NS 的deployment
+deployment nginx-app
+>exit
+再见！
+```
