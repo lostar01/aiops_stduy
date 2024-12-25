@@ -17,59 +17,48 @@ limitations under the License.
 package v1
 
 import (
-	corev1 "k8s.io/api/core/v1"
-	networingv1 "k8s.io/api/networking/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
-// ApplicationSpec defines the desired state of Application.
-type ApplicationSpec struct {
+// LogPilotSpec defines the desired state of LogPilot.
+type LogPilotSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Deployment ApplicationDeployment   `json:"deployment"`
-	Service    corev1.ServiceSpec      `json:"service"`
-	Ingress    networingv1.IngressSpec `json:"ingress"`
+	// Foo is an example field of LogPilot. Edit logpilot_types.go to remove/update
+	Foo string `json:"foo,omitempty"`
 }
 
-type ApplicationDeployment struct {
-	Image    string `json:"image"`
-	Replicas int32  `json:"replicas"`
-	Port     int32  `json:"port"`
-}
-
-// ApplicationStatus defines the observed state of Application.
-type ApplicationStatus struct {
+// LogPilotStatus defines the observed state of LogPilot.
+type LogPilotStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-
-	AvailableReplicas int32 `json:"availableReplicas"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 
-// Application is the Schema for the applications API.
-type Application struct {
+// LogPilot is the Schema for the logpilots API.
+type LogPilot struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   ApplicationSpec   `json:"spec,omitempty"`
-	Status ApplicationStatus `json:"status,omitempty"`
+	Spec   LogPilotSpec   `json:"spec,omitempty"`
+	Status LogPilotStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ApplicationList contains a list of Application.
-type ApplicationList struct {
+// LogPilotList contains a list of LogPilot.
+type LogPilotList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Application `json:"items"`
+	Items           []LogPilot `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&Application{}, &ApplicationList{})
+	SchemeBuilder.Register(&LogPilot{}, &LogPilotList{})
 }

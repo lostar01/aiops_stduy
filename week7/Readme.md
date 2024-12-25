@@ -52,3 +52,35 @@ y
 INFO Create Controller [y/n]                      
 y
 ```
+
+#### 定义type 字段
+```
+type ApplicationSpec struct {
+	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+
+	Deployment ApplicationDeployment   `json:"deployment"`
+	Service    corev1.ServiceSpec      `json:"service"`
+	Ingress    networingv1.IngressSpec `json:"ingress"`
+}
+
+type ApplicationDeployment struct {
+	Image    string `json:"image"`
+	Replicas int32  `json:"replicas"`
+	port     int32  `json:"port"`
+}
+
+// ApplicationStatus defines the observed state of Application.
+type ApplicationStatus struct {
+	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+	// Important: Run "make" to regenerate code after modifying this file
+
+	AvailableReplicas int32 `json:"availableReplicas"`
+}
+```
+
+#### make manifests
+```
+#创建crd
+make manifests
+```

@@ -1,0 +1,9 @@
+apiVersion: aiops.com/v1
+kind: LogPilot
+metadata:
+  labels:
+    app.kubernetes.io/name: logpilot
+    app.kubernetes.io/managed-by: kustomize
+  name: logpilot-sample
+spec:
+  # TODO(user): Add fields here

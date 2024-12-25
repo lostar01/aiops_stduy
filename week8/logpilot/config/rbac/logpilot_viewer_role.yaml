@@ -1,0 +1,23 @@
+# permissions for end users to view logpilots.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: logpilot
+    app.kubernetes.io/managed-by: kustomize
+  name: logpilot-viewer-role
+rules:
+- apiGroups:
+  - aiops.com
+  resources:
+  - logpilots
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - aiops.com
+  resources:
+  - logpilots/status
+  verbs:
+  - get
