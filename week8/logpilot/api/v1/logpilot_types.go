@@ -28,14 +28,20 @@ type LogPilotSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of LogPilot. Edit logpilot_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	LokiURL       string `json:"lokiURL,omitempty"`
+	LokiPromQL    string `json:"lokiPromQL,omitempty"`
+	LLMEndpoint   string `json:"llmEndpoint,omitempty"`
+	LLMToken      string `json:"llmToken,omitempty"`
+	LLMModel      string `json:"llmModel,omitempty"`
+	FeishuWebhook string `json:"feishuWebhook,omitempty"`
 }
 
 // LogPilotStatus defines the observed state of LogPilot.
 type LogPilotStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	PreTimeStamp string `json:"preTimeStamp,omitempty"`
 }
 
 // +kubebuilder:object:root=true
