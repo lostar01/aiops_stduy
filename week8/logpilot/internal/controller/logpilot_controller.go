@@ -23,6 +23,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 
@@ -91,8 +92,10 @@ func (r *LogPilotReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	}
 
 	startTimeForUpdate := currentTime
-	lokiURL := fmt.Sprintf("%s/loki/api/v1/query_range?query=%s&start=%d&end=%d", logPilot.Spec.LokiURL, lokiQuey, startTime, endTime)
-	fmt.Sprintf("lokiURL: %s\n", lokiURL)
+	lokiURL := fmt.Sprintf("%s/loki/api/v1/query_range?query=%s&start=%d&end=%d",
+		logPilot.Spec.LokiURL, url.QueryEscape(lokiQuey), startTime, endTime)
+	// lokiURL := fmt.Sprintf("%s/loki/api/v1/query_range?query=%s&start=%d&end=%d", logPilot.Spec.LokiURL, url.QueryEscape(lokiQuey), startTime, endTime)
+	fmt.Printf("lokiURL: %s\n", lokiURL)
 	lokiLogs, err := r.queryLoki(lokiURL)
 	fmt.Println(lokiLogs)
 	if err != nil {
@@ -185,7 +188,7 @@ func (r *LogPilotReconciler) analyzeLogsWithLLM(endpoint, token, model, logs str
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
-					Content: fmt.Sprintf("你是一个运维专家，以下日志是从日志系统里获取到的日志，请分析日志错误等级，请分析日志错误等级，如果遇到严重问题，例如外部系统请求失败、系统故障、致命错误、数据库连接异常等严重问题时，给出简短建议,对于你认为严重的且需要通知运维人员的，在内容里返回[feishu]标识: \n", logs),
+					Content: fmt.Sprintf("你是一个运维专家，以下日志是从日志系统里获取到的日志，请分析日志错误等级，请分析日志错误等级，如果遇到严重问题，例如外部系统请求失败、系统故障、致命错误、数据库连接异常等严重问题时，给出简短建议,对于你认为严重的且需要通知运维人员的，在内容里返回[feishu]标识: %s\n", logs),
 				},
 			},
 		},
@@ -237,7 +240,8 @@ func (r *LogPilotReconciler) queryLoki(lokiURL string) (string, error) {
 	// 检查 result 是否为空
 	result, ok := data["result"].([]interface{})
 	if !ok || len(result) == 0 {
-		return "", fmt.Errorf("result not found")
+		fmt.Print("result not found")
+		return "", nil
 	}
 
 	//

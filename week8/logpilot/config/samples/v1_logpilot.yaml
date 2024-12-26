@@ -6,4 +6,9 @@ metadata:
     app.kubernetes.io/managed-by: kustomize
   name: logpilot-sample
 spec:
-  # TODO(user): Add fields here
+  lokiURL: "http://172.17.99.87:3100"
+  lokiPromQL: '{app="payment"} |= `ERROR`'
+  llmEndpoint: "http://192.168.1.111:11434/v1"
+  llmToken: "ollama"
+  llmModel: "qwen2.5"
+  feishuWebhook: "https://open.feishu.com/open-apis/bot/v2/hook/d5e26dc-a92f-43d3-bc45-106b5e718c49"
