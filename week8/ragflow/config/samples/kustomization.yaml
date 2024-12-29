@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- log_v1_raglogpilot.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

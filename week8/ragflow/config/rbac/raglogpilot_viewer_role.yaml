@@ -1,0 +1,23 @@
+# permissions for end users to view raglogpilots.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: ragflow
+    app.kubernetes.io/managed-by: kustomize
+  name: raglogpilot-viewer-role
+rules:
+- apiGroups:
+  - log.aiops.com
+  resources:
+  - raglogpilots
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - log.aiops.com
+  resources:
+  - raglogpilots/status
+  verbs:
+  - get

@@ -1,0 +1,27 @@
+# permissions for end users to edit raglogpilots.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: ragflow
+    app.kubernetes.io/managed-by: kustomize
+  name: raglogpilot-editor-role
+rules:
+- apiGroups:
+  - log.aiops.com
+  resources:
+  - raglogpilots
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - log.aiops.com
+  resources:
+  - raglogpilots/status
+  verbs:
+  - get

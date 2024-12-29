@@ -11,4 +11,5 @@ spec:
   llmEndpoint: "http://192.168.1.111:11434/v1"
   llmToken: "ollama"
   llmModel: "qwen2.5"
-  feishuWebhook: "https://open.feishu.com/open-apis/bot/v2/hook/d5e26dc-a92f-43d3-bc45-106b5e718c49"
+  feishuWebhook: "https://open.feishu.cn/open-apis/bot/v2/hook/d219b128-1520-40b3-b7ce-8df8c01422d2"
+

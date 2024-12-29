@@ -83,8 +83,8 @@ func (r *LogPilotReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	lokiQuey := logPilot.Spec.LokiPromQL
 
 	// 纳秒级别时间戳
-	endTime := currentTime * 100000000
-	startTime := (preTime - 5) * 100000000
+	endTime := currentTime * 1000000000
+	startTime := (preTime - 5) * 1000000000
 
 	if startTime >= endTime {
 		logger.Info("startTime >= endTime")
